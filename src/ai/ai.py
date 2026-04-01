@@ -60,7 +60,7 @@ OBSTACLES = {(3,1), (3,2), (3,3), (3,4)}
 GOAL = (4, 4)
 
 def clear_screen():
-    subprocess.run(['cls' if sys.platform == 'win32' else 'clear'], check=True)
+    subprocess.run(['cls' if sys.platform == 'win32' else 'clear'], check=True, shell=True)
 
 def print_grid(position):
     for i in range(5):
