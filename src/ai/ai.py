@@ -58,7 +58,7 @@ for episode in range(episodes):
     #time = 0
     while True:
         if episode < 500:  # Print every 10 episodes
-            action = random.randint(0, 3)  # Pick random action
+            action = random.randint(0, 3)  # Pick random action 
         else :  # After 50 episodes, choose the best action based on Q-values
             action = np.argmax([Q[(position[0], position[1] - 1)] if position[1] > 0 else -np.inf, Q[(position[0], position[1] + 1)] if position[1] < 4 else -np.inf, Q[(position[0] - 1, position[1])] if position[0] > 0 else -np.inf, Q[(position[0] + 1, position[1])] if position[0] < 4 else -np.inf])  # Best action based on Q-values
             #print(action)
@@ -84,7 +84,7 @@ for episode in range(episodes):
         # Q(state, action) = Q(state, action) + learning_rate * (reward + discount_factor * max_future_Q - current_Q)
         old_value = Q[position]
         max_future = np.max([Q[(position[0], position[1] - 1)] if position[1] > 0 else -np.inf, Q[(position[0], position[1] + 1)] if position[1] < 4 else -np.inf, Q[(position[0] - 1, position[1])] if position[0] > 0 else -np.inf, Q[(position[0] + 1, position[1])] if position[0] < 4 else -np.inf])  # Best possible next move
-        new_value = old_value + learning_rate * (reward + discount_factor * max_future - old_value)
+        new_value = old_value + learning_rate * (reward + discount_factor + max_future - old_value)
         Q[position] = new_value
 
         if position == (4,4):
